@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Portefeuille.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;GestionPortefeuille&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">models</a> &gt; <span class="el_source">Portefeuille.java</span></div><h1>Portefeuille.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package models;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author H. Narech
+ */
+public class Portefeuille {
+    List&lt;Monnaie&gt; monnaies;
+
+<span class="nc" id="L18">    public Portefeuille() {</span>
+<span class="nc" id="L19">        this.monnaies = new ArrayList&lt;Monnaie&gt;();</span>
+<span class="nc" id="L20">    }</span>
+
+    public List&lt;Monnaie&gt; getMonnaies() {
+<span class="nc" id="L23">        return monnaies;</span>
+    }
+
+  
+   public void ajouterMonnaie(Monnaie m) throws DeviseInvalideException{
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if(this.monnaies.isEmpty()){</span>
+<span class="nc" id="L29">            this.monnaies.add(m);</span>
+        }else{
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            for(int i=0; i&lt;monnaies.size();i++){</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                if(this.monnaies.get(i).getDevise().equals(m.getDevise())){</span>
+<span class="nc" id="L33">                    this.monnaies.get(i).ajouter(m);</span>
+<span class="nc" id="L34">                    break;</span>
+                }else{
+<span class="nc" id="L36">                   this.monnaies.add(m);</span>
+                   break;
+                }
+            }
+        } 
+<span class="nc" id="L41">   }</span>
+
+    
+    public int calculerMontantPortefeuille() throws DeviseInvalideException{
+<span class="nc" id="L45">        int totalPortefeuille = 0;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if(this.monnaies.isEmpty()){</span>
+<span class="nc" id="L47">            System.out.println(&quot;Aucune monnaie dans le portefeuille&quot;);</span>
+        }else{
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            for(int i=0; i&lt;monnaies.size();i++){</span>
+<span class="nc" id="L50">               int montantCFA = 0;</span>
+<span class="nc bnc" id="L51" title="All 38 branches missed.">               switch (monnaies.get(i).getDevise()) {</span>
+                    case &quot;cfa&quot;:  
+<span class="nc" id="L53">                        montantCFA = monnaies.get(i).getValeur();</span>
+<span class="nc" id="L54">                        break;</span>
+                    case &quot;euro&quot;:  
+<span class="nc" id="L56">                        montantCFA = 655*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L57">                        break;</span>
+                    case &quot;dollar us&quot;:  
+<span class="nc" id="L59">                        montantCFA = 573*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L60">                        break;</span>
+                    case &quot;yen japonnais&quot;:  
+<span class="nc" id="L62">                        montantCFA = 5*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L63">                        break;</span>
+                    case &quot;livre &quot;:  
+<span class="nc" id="L65">                        montantCFA = 761*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L66">                        break;</span>
+                    case &quot;franc suisse&quot;:  
+<span class="nc" id="L68">                        montantCFA = 575*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L69">                        break;</span>
+                    case &quot;dollar canadien&quot;:  
+<span class="nc" id="L71">                        montantCFA = 435*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L72">                        break;</span>
+                    case &quot;yuan chinois&quot;:  
+<span class="nc" id="L74">                        montantCFA = 85*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L75">                        break;</span>
+                    case &quot;dirham &quot;:  
+<span class="nc" id="L77">                        montantCFA = 155*monnaies.get(i).getValeur();</span>
+<span class="nc" id="L78">                        break;</span>
+                    default: 
+                        break;
+                }
+<span class="nc" id="L82">                totalPortefeuille += montantCFA;</span>
+            }
+        } 
+<span class="nc" id="L85">        return totalPortefeuille;</span>
+   }
+    
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
